@@ -3,7 +3,7 @@ from gymnasium import spaces
 import numpy as np
 import pandas as pd
 
-from data_fetch import STATE_FEATURES, F1DataPipeline as _DL
+from data_loader import STATE_FEATURES, F1DataPipeline as _DL
 
 MAX_TYRE_LIFE = _DL.MAX_TYRE_LIFE
 MAX_STOPS = _DL.MAX_STOPS
