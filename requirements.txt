@@ -1,0 +1,12 @@
+fastf1>=3.6.0
+gymnasium>=1.1.1
+stable-baselines3>=2.7.0
+torch>=2.6.0
+qiskit>=2.1.0
+optuna>=4.3.0
+numpy>=2.2.0
+pandas>=2.2.0
+matplotlib>=3.10.0
+plotly>=6.0.0
+dash>=3.0.0
+tqdm>=4.67.0
