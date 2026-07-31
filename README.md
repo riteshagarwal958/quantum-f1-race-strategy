@@ -144,19 +144,12 @@ models/dqn_f1_strategist_final.zip
 Saved model:
 
 ```text
-models/qrl_best.pt
+models/qrl_f1_strategist_final.pt
 ```
 
 ---
 
 ## Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-cd Project
-```
 
 Install the required dependencies:
 
