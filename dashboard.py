@@ -1,26 +1,3 @@
-"""
-F1 Race Strategy RL — Dashboard
-================================
-Streamlit dashboard covering the deliverables asked for in the IITISoC 2026
-"Quantum RL Agent for F1 Race Strategy Optimization" problem statement:
-
-  - Reward curves / convergence plots / sample-efficiency comparison
-  - Strategy divergence analysis (QRL vs DQN vs real team strategy)
-  - Live lap-by-lap race replay (agent decisions vs real strategy calls)
-  - Final race summaries and comparative benchmarking
-  - Quantum circuit design documentation (qubits, gates, entanglement, encoding)
-  - Reward function / environment documentation
-  - A live checklist against the problem statement's deliverables, technical
-    constraints, and evaluation criteria
-
-Run with:
-    streamlit run dashboard.py
-
-Expects to be launched from the same directory as your other project
-scripts (data_loader.py, f1_strategy_env.py, generate_data.py, main_dqn.py,
-main_qrl.py, evaluate_dqn.py, evaluate_qrl.py, compare_agents.py) since it
-imports F1StrategyEnv / QRLActorCritic directly from them.
-"""
 
 import glob
 import os
@@ -32,9 +9,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-
-# --- Optional heavy deps: the dashboard still runs (with graceful notices)
-# if any of these aren't installed / trained yet. ---
 
 try:
     from f1_strategy_env import F1StrategyEnv
@@ -122,10 +96,7 @@ QUANTUM_CIRCUIT_NOTES = {
                      "cycling every 3 layers.",
 }
 
-# Static reference copies of the problem-statement sections that can't be
-# verified from inside the app (constraints / evaluation criteria / bonus
-# ideas) -- paraphrased from the IITISoC 2026 Quantum Computing problem
-# statement document for at-a-glance reference.
+
 PS_TECHNICAL_CONSTRAINTS = [
     "All race data sourced from the FastF1 API -- no synthetic datasets for core benchmarking",
     "VQC policy network implemented with PennyLane (or Qiskit)",
@@ -211,9 +182,7 @@ def load_qrl_model():
     path = os.path.join(MODEL_DIR, "qrl_f1_strategist_final.pt")
     if not os.path.exists(path):
         return None
-    # weights_only=False: this checkpoint stores numpy arrays (norm_mean/norm_var)
-    # alongside the model state_dict, which PyTorch >=2.6's default weights_only=True
-    # refuses to unpickle. Safe here since it's your own locally-trained checkpoint.
+ 
     checkpoint = torch.load(path, map_location=DEVICE, weights_only=False)
     policy = QRLActorCritic(NUM_QUBITS, NUM_LAYERS, NUM_FEATURES, NUM_ACTIONS, ENCODER_HIDDEN).to(DEVICE)
     policy.load_state_dict(checkpoint["model_state_dict"])
@@ -841,9 +810,7 @@ with tab_replay:
                 format_func=lambda s: f"{1/s:.1f} lap/s", key="autoplay_speed",
             )
 
-            # IMPORTANT: session_state for a widget key can only be written
-            # before that widget is instantiated in a given run, so advance
-            # the cursor + rerun here, *before* creating the st.slider below.
+            
             if autoplay:
                 time.sleep(play_speed)
                 st.session_state.lap_cursor = (st.session_state.lap_cursor % max_lap) + 1
