@@ -13,7 +13,7 @@ The trained agents are evaluated on unseen Formula 1 races, compared with the hi
 - Historical Formula 1 race data collection using FastF1
 - Automated race data generation and preprocessing
 - Custom Gymnasium environment for race strategy simulation
-- Deep Reinforcement Learning using Stable-Baselines3 DQN
+- Deep Reinforcement Learning using Actor-Critic Architecture and trained using PPO
 - Quantum Reinforcement Learning using PennyLane and PyTorch
 - Hyperparameter optimization using Optuna
 - Multi-track and multi-season training
